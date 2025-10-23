@@ -62,9 +62,10 @@ const DistrictPerformance = ({ language }) => {
 
   const loadPerformanceData = async () => {
     try {
-  setLoading(true);
-  const response = await api.getLatestPerformance(id, stateName, fyParam);
-  setData(response.data);
+      setLoading(true);
+      const response = await api.getLatestPerformance(id, stateName, fyParam);
+      // Response structure: { success: true, data: { district, performance, indicators } }
+      setData(response.data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -74,8 +75,9 @@ const DistrictPerformance = ({ language }) => {
 
   const loadHistoryData = async () => {
     try {
-  const response = await api.getPerformanceHistory(id, stateName, fyParam, 12);
-  setHistory(response.data?.history || []);
+      const response = await api.getPerformanceHistory(id, stateName, fyParam, 12);
+      // Response structure: { success: true, data: { district, history } }
+      setHistory(response.data?.history || []);
     } catch (err) {
       console.error('Failed to load history:', err);
     }

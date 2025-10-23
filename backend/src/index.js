@@ -5,7 +5,8 @@ import compression from 'compression';
 import { rateLimit } from 'express-rate-limit';
 import dotenv from 'dotenv';
 import logger from './config/logger.js';
-import directRoutes from './routes/direct.js';
+import { testConnection } from './config/database.js';
+import hybridRoutes from './routes/hybrid.js';
 
 dotenv.config();
 
@@ -38,16 +39,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', async (req, res) => {
+  const dbConnected = await testConnection();
   res.json({ 
     status: 'ok', 
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
+    database: dbConnected ? 'connected' : 'disconnected',
+    cacheEnabled: process.env.ENABLE_DB_CACHE === 'true',
   });
 });
 
-// API routes - Direct from data.gov.in (no database)
-app.use('/api', directRoutes);
+// API routes - Hybrid approach (DB cache + API)
+app.use('/api', hybridRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
@@ -68,15 +72,27 @@ app.use((err, req, res, next) => {
   });
 });
 
-// No scheduled sync needed - all data fetched directly from API in real-time
+// Test database connection on startup
+async function startServer() {
+  const dbConnected = await testConnection();
+  if (dbConnected) {
+    logger.info('✅ Database connection successful (Hybrid mode enabled)');
+  } else {
+    logger.warn('⚠️ Database connection failed (Running in API-only mode)');
+  }
+
+  app.listen(PORT, () => {
+    logger.info(`Server running on port ${PORT}`);
+    logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    logger.info(`Cache enabled: ${process.env.ENABLE_DB_CACHE === 'true'}`);
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    console.log(`📊 API Mode: Hybrid (DB Cache + API)`);
+    console.log(`💾 Database: ${dbConnected ? 'Connected' : 'Disconnected'}`);
+  });
+}
 
 // Start server
-app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT}`);
-  logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  console.log(`📊 API Documentation: http://localhost:${PORT}/api`);
-});
+startServer();
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
