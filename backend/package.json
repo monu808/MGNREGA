@@ -1,0 +1,37 @@
+{
+  "name": "mgnrega-backend",
+  "version": "1.0.0",
+  "description": "Backend API for MGNREGA District Performance Tracker",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "seed": "node src/scripts/seedData.js",
+    "sync": "node src/scripts/syncData.js"
+  },
+  "keywords": [
+    "mgnrega",
+    "government",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.1.5",
+    "node-cache": "^5.1.2",
+    "axios": "^1.6.2",
+    "winston": "^3.11.0",
+    "node-cron": "^3.0.3",
+    "geolib": "^3.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

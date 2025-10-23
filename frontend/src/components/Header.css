@@ -1,0 +1,134 @@
+.header {
+  background: white;
+  color: var(--text-primary);
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.logo-icon {
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border-radius: var(--radius-md);
+  color: white;
+}
+
+.logo-text h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.logo-text .subtitle {
+  font-size: 0.813rem;
+  margin: 0;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--hover-bg);
+}
+
+.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  color: var(--primary-color);
+  border: 1.5px solid var(--border-color);
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.language-btn:hover {
+  background-color: var(--hover-bg);
+  border-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 1rem 1.5rem;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .logo-text h1 {
+    font-size: 1.25rem;
+  }
+
+  .logo-text .subtitle {
+    font-size: 0.75rem;
+  }
+
+  .nav {
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .language-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .language-btn span {
+    display: none;
+  }
+}

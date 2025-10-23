@@ -1,0 +1,366 @@
+.home {
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.dashboard-header {
+  background: white;
+  padding: 3rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.dashboard-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dashboard-title-icon {
+  font-size: 2rem;
+}
+
+.dashboard-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+.auto-location-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auto-location-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.auto-location-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+}
+
+.auto-location-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auto-location-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auto-location-btn svg {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.location-info {
+  margin-top: 1rem;
+  padding: 0.875rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 4px solid #4CAF50;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.selection-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.selection-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--text-tertiary);
+}
+
+.selection-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.selection-card-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.selection-card select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  background: white;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.selection-card select:hover {
+  border-color: var(--text-tertiary);
+}
+
+.selection-card select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.placeholder-section {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  color: var(--text-tertiary);
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.placeholder-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.placeholder-text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.divider {
+  margin: 2.5rem 0;
+  position: relative;
+  text-align: center;
+}
+
+.divider span {
+  background-color: white;
+  padding: 0 1.5rem;
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 1;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  gap: 0.75rem;
+  color: #212121;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  font-size: 1.1rem;
+  outline: none;
+  background: transparent;
+}
+
+.districts-section {
+  margin: 3rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.districts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.district-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.district-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.district-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.district-info {
+  flex: 1;
+}
+
+.district-name {
+  font-size: 1.25rem;
+  margin: 0;
+  color: #212121;
+}
+
+.district-state {
+  font-size: 0.95rem;
+  color: #757575;
+  margin: 0.25rem 0 0;
+}
+
+.district-arrow {
+  font-size: 1.5rem;
+  color: #4CAF50;
+  flex-shrink: 0;
+}
+
+.info-section {
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 3rem auto;
+}
+
+.info-icon {
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.info-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.info-section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #424242;
+}
+
+@media (max-width: 968px) {
+  .dashboard-header {
+    padding: 2rem 1.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.75rem;
+  }
+
+  .dashboard-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .dashboard-container {
+    padding: 0 1.5rem 2rem;
+  }
+
+  .selection-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .selection-card {
+    padding: 1.5rem;
+  }
+
+  .placeholder-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .placeholder-icon {
+    font-size: 3rem;
+  }
+
+  .placeholder-title {
+    font-size: 1.25rem;
+  }
+
+  .placeholder-text {
+    font-size: 0.95rem;
+  }
+}
