@@ -312,37 +312,174 @@ const DistrictPerformance = ({ language }) => {
 
         {/* Additional Details */}
         <div className="details-section card">
-          <h2>{language === 'en' ? 'Additional Details' : 'अतिरिक्त विवरण'}</h2>
-          <div className="details-grid">
-            <div className="detail-item">
-              <span className="detail-label">{t('ongoingWorks')}</span>
-              <span className="detail-value">{performance.total_works_ongoing}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">{t('completedWorks')}</span>
-              <span className="detail-value">{performance.total_works_completed}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">
-                {language === 'en' ? 'Demand Fulfilled' : 'मांग पूर्ति'}
-              </span>
-              <span className="detail-value">
-                {performance.employment_demand_fulfilled_percent}%
-              </span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">
-                {language === 'en' ? 'Timely Payment' : 'समय पर भुगतान'}
-              </span>
-              <span className="detail-value">
-                {performance.payment_within_15_days_percent}%
-              </span>
+          <h2>{language === 'en' ? 'Detailed Statistics' : 'विस्तृत आंकड़े'}</h2>
+          
+          {/* Works Information */}
+          <div className="details-category">
+            <h3 className="category-title">
+              {language === 'en' ? '🏗️ Works Information' : '🏗️ कार्य जानकारी'}
+            </h3>
+            <div className="details-grid">
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Total Works Taken Up' : 'कुल कार्य शुरू'}</span>
+                <span className="detail-value">{formatNumber(performance.total_works_takenup)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{t('ongoingWorks')}</span>
+                <span className="detail-value">{formatNumber(performance.total_works_ongoing)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{t('completedWorks')}</span>
+                <span className="detail-value">{formatNumber(performance.total_works_completed)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Work Completion Rate' : 'कार्य पूर्णता दर'}</span>
+                <span className="detail-value">
+                  {performance.total_works_takenup > 0 
+                    ? Math.round((performance.total_works_completed / performance.total_works_takenup) * 100) 
+                    : 0}%
+                </span>
+              </div>
             </div>
           </div>
+
+          {/* Employment Information */}
+          <div className="details-category">
+            <h3 className="category-title">
+              {language === 'en' ? '👥 Employment Information' : '👥 रोजगार जानकारी'}
+            </h3>
+            <div className="details-grid">
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Total Job Cards' : 'कुल जॉब कार्ड'}</span>
+                <span className="detail-value">{formatNumber(performance.total_job_cards_issued)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Active Job Cards' : 'सक्रिय जॉब कार्ड'}</span>
+                <span className="detail-value">{formatNumber(performance.active_job_cards)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Total Workers' : 'कुल श्रमिक'}</span>
+                <span className="detail-value">{formatNumber(performance.total_workers)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Active Workers' : 'सक्रिय श्रमिक'}</span>
+                <span className="detail-value">{formatNumber(performance.active_workers)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Households Worked' : 'कार्यरत परिवार'}</span>
+                <span className="detail-value">{formatNumber(performance.households_employed)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Individuals Worked' : 'कार्यरत व्यक्ति'}</span>
+                <span className="detail-value">{formatNumber(performance.total_individuals_worked)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Categories */}
+          <div className="details-category">
+            <h3 className="category-title">
+              {language === 'en' ? '🤝 Social Inclusion' : '🤝 सामाजिक समावेश'}
+            </h3>
+            <div className="details-grid">
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'SC Workers' : 'अनुसूचित जाति श्रमिक'}</span>
+                <span className="detail-value">{formatNumber(performance.sc_workers)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'SC Person-days' : 'अनुसूचित जाति व्यक्ति-दिवस'}</span>
+                <span className="detail-value">{formatNumber(performance.sc_persondays)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'ST Workers' : 'अनुसूचित जनजाति श्रमिक'}</span>
+                <span className="detail-value">{formatNumber(performance.st_workers)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'ST Person-days' : 'अनुसूचित जनजाति व्यक्ति-दिवस'}</span>
+                <span className="detail-value">{formatNumber(performance.st_persondays)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Women Person-days' : 'महिला व्यक्ति-दिवस'}</span>
+                <span className="detail-value">{formatNumber(performance.women_persondays)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Differently Abled' : 'दिव्यांग श्रमिक'}</span>
+                <span className="detail-value">{formatNumber(performance.differently_abled_persons_worked)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Financial Information */}
+          <div className="details-category">
+            <h3 className="category-title">
+              {language === 'en' ? '💰 Financial Details' : '💰 वित्तीय विवरण'}
+            </h3>
+            <div className="details-grid">
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Total Expenditure' : 'कुल व्यय'}</span>
+                <span className="detail-value">{formatCurrency(performance.total_expenditure)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Wage Expenditure' : 'मजदूरी व्यय'}</span>
+                <span className="detail-value">{formatCurrency(performance.wage_expenditure)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Material Expenditure' : 'सामग्री व्यय'}</span>
+                <span className="detail-value">{formatCurrency(performance.material_expenditure)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Admin Expenditure' : 'प्रशासनिक व्यय'}</span>
+                <span className="detail-value">{formatCurrency(performance.admin_expenditure)}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Avg Wage/Day' : 'औसत मजदूरी/दिन'}</span>
+                <span className="detail-value">₹{performance.average_wage_per_day}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Approved Budget' : 'स्वीकृत बजट'}</span>
+                <span className="detail-value">{formatNumber(performance.approved_labour_budget)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Performance Metrics */}
+          <div className="details-category">
+            <h3 className="category-title">
+              {language === 'en' ? '📊 Performance Metrics' : '📊 प्रदर्शन मेट्रिक्स'}
+            </h3>
+            <div className="details-grid">
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Demand Fulfilled' : 'मांग पूर्ति'}</span>
+                <span className="detail-value">{performance.employment_demand_fulfilled_percent}%</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Payment within 15 days' : '15 दिन में भुगतान'}</span>
+                <span className="detail-value">{performance.payment_within_15_days_percent}%</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Category B Works' : 'श्रेणी बी कार्य'}</span>
+                <span className="detail-value">{performance.percent_category_b_works}%</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'NRM Expenditure' : 'एनआरएम व्यय'}</span>
+                <span className="detail-value">{performance.percent_nrm_expenditure}%</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'Agriculture Works' : 'कृषि कार्य'}</span>
+                <span className="detail-value">{performance.percent_agriculture_expenditure}%</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">{language === 'en' ? 'GPs with NIL Exp' : 'शून्य व्यय वाली पंचायतें'}</span>
+                <span className="detail-value">{formatNumber(performance.number_of_gps_with_nil_exp)}</span>
+              </div>
+            </div>
+          </div>
+
           <p className="data-timestamp">
             {language === 'en' ? 'Data Source' : 'डेटा स्रोत'}:{' '}
-            {performance.data_source || 'data.gov.in API'} 
-            {performance.financial_year && ` (FY ${performance.financial_year})`}
+            {performance.data_source || 'data.gov.in'} 
+            {performance.financial_year && ` | FY ${performance.financial_year}`}
+            {performance.month && ` | ${performance.month}`}
           </p>
         </div>
       </div>
