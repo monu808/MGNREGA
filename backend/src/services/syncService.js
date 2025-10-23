@@ -42,8 +42,8 @@ class SyncService {
       const currentMonth = now.getMonth() + 1;
       const currentYear = now.getFullYear();
       // API uses format like "2024-2025"
-      // Use 2024-2025 as the most recent available data
-      const financialYear = '2024-2025';
+      // Use 2025-2026 as the most recent available data
+      const financialYear = '2025-2026';
 
       // Fetch data for each district
       for (const district of districts) {
